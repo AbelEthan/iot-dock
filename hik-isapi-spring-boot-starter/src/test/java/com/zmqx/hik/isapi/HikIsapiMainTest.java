@@ -2,9 +2,7 @@ package com.zmqx.hik.isapi;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.XmlUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zmqx.hik.isapi.model.face.CreateFDLib;
-import com.zmqx.hik.isapi.model.face.CreateFDLibList;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.w3c.dom.Document;
@@ -22,7 +20,7 @@ import java.util.Map;
 @SpringBootTest
 public class HikIsapiMainTest {
     @Test
-    public void convertToObj() throws JsonProcessingException {
+    public void convertToObj() {
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("createFDLib.xml");
         Document document = XmlUtil.readXML(inputStream);
         String xmlStr = XmlUtil.toStr(document);
@@ -30,6 +28,6 @@ public class HikIsapiMainTest {
         Map<String, Object> xmlMap = XmlUtil.xmlToMap(xmlStr);
         System.out.println("xmlMap:" + xmlMap);
         CreateFDLib createFDLib = BeanUtil.toBean(xmlMap, CreateFDLib.class);
-        System.out.println("createFDLib:" + CreateFDLibList.class);
+        System.out.println("createFDLib:" + createFDLib);
     }
 }

@@ -16,7 +16,6 @@
 
 package com.zmqx.hik.isapi.model.face;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.Data;
 
 /**
@@ -27,7 +26,6 @@ import lombok.Data;
  * @Describes opt, object, 创建人脸库
  */
 @Data
-@JacksonXmlRootElement
 public class CreateFDLib {
 
     /**
