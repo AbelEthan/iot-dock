@@ -4,9 +4,38 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>com.zmqx</groupId>
+        <artifactId>iot-dock</artifactId>
+        <version>23.12.001-SNAPSHOT</version>
+    </parent>
+
     <groupId>com.zmqx</groupId>
     <artifactId>iot-dock-core</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>23.12.001-SNAPSHOT</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.zmqx</groupId>
+            <artifactId>iot-dock-annotation</artifactId>
+            <version>${iot-dock.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>${commons-httplient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool-all.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

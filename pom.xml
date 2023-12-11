@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.zmqx</groupId>
+    <artifactId>iot-dock</artifactId>
+    <version>23.12.001-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!--版本号-->
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
+        <iot-dock.version>23.12.001-SNAPSHOT</iot-dock.version>
+        <lombok.version>1.18.30</lombok.version>
+        <hutool-all.version>5.8.23</hutool-all.version>
+        <commons-httplient.version>3.1</commons-httplient.version>
+        <jackson-dataformat-xml.version>2.16.0</jackson-dataformat-xml.version>
+    </properties>
+
+    <modules>
+        <module>iot-dock-annotation</module>
+        <module>iot-dock-core</module>
+        <module>iot-dock-extend</module>
+        <module>hik-isapi-spring-boot-starter</module>
+    </modules>
+
+</project>

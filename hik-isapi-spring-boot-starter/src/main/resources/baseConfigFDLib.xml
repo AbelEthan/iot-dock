@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FDLibBaseCfgList xmlns="http://www.isapi.org/ver20/XMLSchema" version="2.0">
+    <!--opt, array, 人脸库信息列表, subType:object, attr:version{req, string, 协议版本}-->
+    <FDLibBaseCfg>
+        <!--opt, object, 人脸库信息-->
+        <id>
+            <!--opt, int, 表示list中子项个数;从1开始赋值;依次增加, range:[1,15]-->1
+        </id>
+        <FDID>
+            <!--opt, string, 表示人脸库唯一ID-->test
+        </FDID>
+        <name>
+            <!--req, string, 人脸库名称, range:[1,64]-->faceLib1
+        </name>
+        <thresholdValue>
+            <!--opt, int, 检测阈值, range:[0,100]-->50
+        </thresholdValue>
+        <customInfo>
+            <!--opt, string, 人脸库附加信息, range:[1,128]-->test
+        </customInfo>
+        <customFaceLibID>
+            <!--opt, string, 自定义人脸库ID, range:[1,64]-->test
+        </customFaceLibID>
+        <faceLibType>
+            <!--ro, opt, enum, 人脸库类型, subType:string, [ordinary#普通库,private#私密库,stranger#陌生人库,allowable#允许库,privacyMask#隐私遮蔽库]-->
+            allowable
+        </faceLibType>
+        <autoUpdata>
+            <!--opt, bool, 人脸库自动更新库中底图使能, desc:若能力集中autoUpdata只支持true,表示人脸库自动更新功能默认开启，不支持关闭-->
+            true
+        </autoUpdata>
+        <qualityThreshold>
+            <!--opt, int, 图片质量阈值, range:[0,100]-->50
+        </qualityThreshold>
+        <importFDThreshold>
+            <!--opt, int, 入库相似度阈值, range:[0,100]-->40
+        </importFDThreshold>
+        <Age>
+            <!--opt, object, 人脸库聚类老化参数配置;当<autoUpdata>=true时生效-->
+            <judgementCycleType>
+                <!--req, enum, 人脸库聚类数据老化判断周期时间类型, subType:string, [day#天,week#周,month#月,duration#按时长判断], desc:天:晚上0点,周:周日0点 月:月初
+                0点,默认:month-->day
+            </judgementCycleType>
+            <statisticalCycleType>
+                <!--ro, req, enum, 人脸库聚类比对成功统计周期时间类型能力, subType:string, [day#天,week#周,month#月]-->
+                month
+            </statisticalCycleType>
+            <statisticalCycle>
+                <!--req, int, 比对成功的统计周期, range:[0,99999]-->1
+            </statisticalCycle>
+            <minFMCount>
+                <!--req, int, 统计周期内最少人脸比对成功次数, range:[0,99999]-->1
+            </minFMCount>
+            <FMCountEnabled>
+                <!--opt, bool, 是否启用人脸比对成功总次数-->true
+            </FMCountEnabled>
+            <FMCount>
+                <!--opt, int, 人脸比对成功总次数, range:[0,99999]-->1
+            </FMCount>
+            <backgroundPicThreshold>
+                <!--opt, int, 底图替换相似度阈值, range:[1,100]-->90
+            </backgroundPicThreshold>
+            <judgementCycle>
+                <!--opt, int, 人脸库聚类数据老化判断周期时间范围, range:[1,365], unit:d, unitType:时间, dep:and,
+                {$.FDLibCap.CreateFDLibList[*].CreateFDLib.Age.judgementCycleType,eq,duration}-->30
+            </judgementCycle>
+        </Age>
+        <FaceCounting>
+            <!--opt, object, 人脸库比对客流统计去重配置-->
+            <enabled>
+                <!--req, bool, 人脸客流去重是否开启-->true
+            </enabled>
+            <uploadType>
+                <!--ro, req, enum, 人脸客流去重开启后的上报模式, subType:string, [out_repetition#去重时间段外上报,noUpload#去重时间段外不上报]-->
+                noUpload
+            </uploadType>
+            <faceSimilarity>
+                <!--ro, opt, int, 人脸比对相似度阈值, range:[0,100]-->40
+            </faceSimilarity>
+        </FaceCounting>
+        <faceMonitor>
+            <!--ro, opt, bool, 是否是智能人脸布防的人脸库-->true
+        </faceMonitor>
+        <monitorFaceNum>
+            <!--ro, opt, int, 布防人脸支持的人脸最大个数-->1
+        </monitorFaceNum>
+        <customNoConfig>
+            <!--ro, opt, bool, 人员布防模式下, desc:返回为true-自定义库web不可配置,协议可以配置,web限制不可配置,不支持不返回-->
+            true
+        </customNoConfig>
+        <uploadID>
+            <!--opt, string, 自学习人脸库人脸比对布防订阅上传策略ID;平台自己确保唯一性, range:[1,128], dep:and,
+            {$.FDLibBaseCfglist.FDLibBaseCfg.autoUpdata,eq,true}, desc:autoUpdata=true时有效,因为自学习人脸库报警，对于不同的平台来说，报警结果是不一样的，因为A平台有这
+            个人脸库，所以比对成功，对于B平台没有此人脸库，则应该属于比对失败,所以需要新增布防订阅上传策略ID，-->test
+        </uploadID>
+    </FDLibBaseCfg>
+</FDLibBaseCfgList>

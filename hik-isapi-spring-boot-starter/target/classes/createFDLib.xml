@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CreateFDLibList xmlns="http://www.isapi.org/ver20/XMLSchema" version="2.0">
+    <!--opt, array, 创建人脸库信息列表, subType:object, attr:version{req, string, 协议版本}-->
+    <CreateFDLib>
+        <!--opt, object, 创建人脸库-->
+        <id>
+            <!--opt, int, 表示list中子项个数;从1开始赋值;依次增加, range:[1,15]-->1
+        </id>
+        <name>
+            <!--req, string, 人脸库名称, range:[1,64]-->faceLib1
+        </name>
+        <thresholdValue>
+            <!--opt, int, 检测阈值, range:[0,100]-->50
+        </thresholdValue>
+        <customInfo>
+            <!--opt, string, 人脸库附加信息, range:[1,128]-->test
+        </customInfo>
+        <customFaceLibID>
+            <!--opt, string, 自定义人脸库ID, range:[1,64]-->test
+        </customFaceLibID>
+        <autoUpdata>
+            <!--opt, bool, 人脸库自动更新库中底图使能-->true
+        </autoUpdata>
+        <qualityThreshold>
+            <!--opt, int, 图片质量阈值, range:[0,100]-->50
+        </qualityThreshold>
+        <importFDThreshold>
+            <!--opt, int, 入库相似度阈值, range:[0,100]-->40
+        </importFDThreshold>
+        <Age>
+            <!--opt, object, 人脸库聚类老化参数配置;当<autoUpdata>=true时生效-->
+            <judgementCycleType>
+                <!--req, enum, 人脸库聚类数据老化判断周期时间类型, subType:string, [day#天,week#周,month#月,duration#按时长判断]-->day
+            </judgementCycleType>
+            <statisticalCycleType>
+                <!--req, enum, 人脸库聚类比对成功统计周期时间类型能力, subType:string, [day#天,week#周,month#月]-->month
+            </statisticalCycleType>
+            <statisticalCycle>
+                <!--req, int, 比对成功的统计周期, range:[0,99999]-->1
+            </statisticalCycle>
+            <minFMCount>
+                <!--req, int, 统计周期内最少人脸比对成功次数, range:[0,99999]-->1
+            </minFMCount>
+            <FMCountEnabled>
+                <!--opt, bool, 是否启用人脸比对成功总次数-->true
+            </FMCountEnabled>
+            <FMCount>
+                <!--opt, int, 人脸比对成功总次数, range:[0,99999]-->1
+            </FMCount>
+            <backgroundPicThreshold>
+                <!--opt, int, 底图替换相似度阈值, range:[1,100]-->90
+            </backgroundPicThreshold>
+            <judgementCycle>
+                <!--opt, int, 人脸库聚类数据老化判断周期时间范围, range:[1,365], unit:d, unitType:时间, dep:and,
+                {$.FDLibCap.CreateFDLibList[*].CreateFDLib.Age.judgementCycleType,eq,duration}-->60
+            </judgementCycle>
+            <agingExecDataTime>
+                <!--opt, time, 聚类库老化执行时间-->00:00:00+08:00
+            </agingExecDataTime>
+            <automaticClearEnabled>
+                <!--opt, bool, 聚类库满自动清理使能-->true
+            </automaticClearEnabled>
+        </Age>
+        <FaceCounting>
+            <!--opt, object, 人脸库比对客流统计去重配置-->
+            <enabled>
+                <!--req, bool, 人脸客流去重是否开启-->true
+            </enabled>
+            <uploadType>
+                <!--req, enum, 人脸客流去重开启后的上报模式, subType:string, [out_repetition#去重时间段外上报,noUpload#去重时间段外不上报]-->noUpload
+            </uploadType>
+        </FaceCounting>
+        <faceLibType>
+            <!--opt, enum, 创建指定人脸库类型, subType:string, [ordinary#普通库,privacyMask#隐私遮蔽库], desc:不传该节点，默认创建普通人脸库-->ordinary
+        </faceLibType>
+    </CreateFDLib>
+</CreateFDLibList>
