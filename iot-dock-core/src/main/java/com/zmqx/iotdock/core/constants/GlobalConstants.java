@@ -8,6 +8,7 @@ package com.zmqx.iotdock.core.constants;
  * @Describes 全局常量
  */
 public interface GlobalConstants {
+
     /**
      * 请求IP
      *

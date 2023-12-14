@@ -1,7 +1,8 @@
 package com.zmqx.hik.isapi.client.intelligent;
 
 import cn.hutool.http.HttpUtil;
-import com.zmqx.iotdock.core.constants.ApiConstants;
+import com.zmqx.hik.isapi.constants.ApiIntelligentConstant;
+import com.zmqx.iotdock.core.util.RequestUtil;
 
 /**
  * @ClassName: {@link ApiIntelligentClient}
@@ -19,7 +20,7 @@ public class ApiIntelligentClient {
      * @return
      */
     public String getAlgorithmPackages(String ip){
-        String requestUrl = ApiConstants.getJsonRequestUrl(ip, ApiConstants.GET_INTELLIGENT_ALGORITHM_PACKAGES);
+        String requestUrl = RequestUtil.getJsonRequestUrl(ip, ApiIntelligentConstant.GET_ALGORITHM_PACKAGES);
         return HttpUtil.get(requestUrl);
     }
 
@@ -30,7 +31,7 @@ public class ApiIntelligentClient {
      * @return
      */
     public String getAlgorithmInfos(String ip){
-        String requestUrl = ApiConstants.getJsonRequestUrl(ip, ApiConstants.GET_INTELLIGENT_ALGORITHM_INFOS);
+        String requestUrl = RequestUtil.getJsonRequestUrl(ip, ApiIntelligentConstant.GET_ALGORITHM_INFOS);
         return HttpUtil.get(requestUrl);
     }
 }

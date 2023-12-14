@@ -1,19 +1,20 @@
-package com.zmqx.hik.isapi.client.face;
+package com.zmqx.hik.isapi.client.sdt;
 
 import cn.hutool.http.HttpUtil;
-import com.zmqx.iotdock.core.constants.ApiConstants;
+import com.zmqx.hik.isapi.constants.ApiSDTConstant;
+import com.zmqx.iotdock.core.util.RequestUtil;
 
 import java.io.IOException;
 import java.util.HashMap;
 
 /**
- * @ClassName: {@link ApiFaceClient}
+ * @ClassName: {@link ApiSDTFaceClient}
  * @Author: AbelEthan
  * @Email AbelEthan@126.com
  * @Date 2023/12/11 16:54
  * @Describes
  */
-public class ApiFaceClient {
+public class ApiSDTFaceClient {
 
     /**
      * 获取分析人脸图片能力集
@@ -24,7 +25,7 @@ public class ApiFaceClient {
      * @throws IOException
      */
     public String getFacePicAnalysisCapabilities(String ip) {
-        String requestUrl = ApiConstants.getRequestUrl(ip, ApiConstants.GET_SDT_FACE_PIC_ANALYSIS_CAPABILITY);
+        String requestUrl = RequestUtil.getRequestUrl(ip, ApiSDTConstant.GET_FACE_PIC_ANALYSIS_CAPABILITY);
         return HttpUtil.get(requestUrl);
     }
 
@@ -37,7 +38,7 @@ public class ApiFaceClient {
      * @throws IOException
      */
     public String getFacePicAnalysisBatchCapabilities(String ip) {
-        String requestUrl = ApiConstants.getRequestUrl(ip, ApiConstants.GET_SDT_FACE_PIC_ANALYSIS_BATCH_CAPABILITY);
+        String requestUrl = RequestUtil.getRequestUrl(ip, ApiSDTConstant.GET_FACE_PIC_ANALYSIS_BATCH_CAPABILITY);
         return HttpUtil.get(requestUrl);
     }
 
@@ -50,7 +51,7 @@ public class ApiFaceClient {
      * @throws IOException
      */
     public String postFacePicAnalysis(String ip) {
-        String requestUrl = ApiConstants.getRequestUrl(ip, ApiConstants.POST_SDT_FACE_PIC_ANALYSIS);
+        String requestUrl = RequestUtil.getRequestUrl(ip, ApiSDTConstant.POST_FACE_PIC_ANALYSIS);
         return HttpUtil.post(requestUrl, new HashMap<>());
     }
 
@@ -63,7 +64,7 @@ public class ApiFaceClient {
      * @throws IOException
      */
     public String postFacePicAnalysisBatch(String ip) {
-        String requestUrl = ApiConstants.getRequestUrl(ip, ApiConstants.POST_SDT_FACE_PIC_ANALYSIS_BATCH);
+        String requestUrl = RequestUtil.getRequestUrl(ip, ApiSDTConstant.POST_FACE_PIC_ANALYSIS_BATCH);
         return HttpUtil.post(requestUrl, new HashMap<>());
     }
 
@@ -75,7 +76,7 @@ public class ApiFaceClient {
      * @throws IOException
      */
     public String getManagementTaskStatus(String ip) {
-        String requestUrl = ApiConstants.getRequestUrl(ip, ApiConstants.GET_SDT_MANAGEMENT_TASK_STATUS);
+        String requestUrl = RequestUtil.getRequestUrl(ip, ApiSDTConstant.GET_MANAGEMENT_TASK_STATUS);
         return HttpUtil.get(requestUrl);
     }
 }

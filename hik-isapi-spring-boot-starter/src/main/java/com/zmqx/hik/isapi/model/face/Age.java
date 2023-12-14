@@ -1,6 +1,15 @@
 package com.zmqx.hik.isapi.model.face;
 
+import com.zmqx.hik.isapi.constants.IsApiConstants;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  * @ClassName: {@link Age}
@@ -10,7 +19,11 @@ import lombok.Data;
  * @Describes opt, object, 人脸库聚类老化参数配置;当<autoUpdata>=true时生效
  */
 @Data
-public class Age {
+@NoArgsConstructor
+@AllArgsConstructor
+@XmlRootElement(name = "Age")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Age implements Serializable {
 
     /**
      * req, enum,
@@ -18,6 +31,7 @@ public class Age {
      * subType:string,
      * [day#天,week#周,month#月,duration#按时长判断]
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private String judgementCycleType;
 
     /**
@@ -26,6 +40,7 @@ public class Age {
      * subType:string,
      * [day#天,week#周,month#月]
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private String statisticalCycleType;
 
     /**
@@ -33,6 +48,7 @@ public class Age {
      * 比对成功的统计周期,
      * range:[0,99999]
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private Integer statisticalCycle;
 
 
@@ -41,24 +57,28 @@ public class Age {
      * 统计周期内最少人脸比对成功次数,
      * range:[0,99999]
      */
-    private Integer minFMCount;
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
+    private Integer minCount;
 
     /**
      * opt, bool,
      * 是否启用人脸比对成功总次数
      */
-    private Boolean FMCountEnabled;
+    @XmlElement(name = "FMCountEnabled", namespace = IsApiConstants.ISAPI_NAMESPACE)
+    private Boolean enabledCount;
 
     /**
      * opt, int,
      * 人脸比对成功总次数,
      * range:[0,99999]
      */
-    private Integer FMCount;
+    @XmlElement(name = "FMCount", namespace = IsApiConstants.ISAPI_NAMESPACE)
+    private Integer count;
 
     /**
      * opt, int, 底图替换相似度阈值, range:[1,100]
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private Integer backgroundPicThreshold;
 
     /**
@@ -68,17 +88,20 @@ public class Age {
      * unit:d, unitType:时间, dep:and,
      * {$.FDLibCap.CreateFDLibList[*].CreateFDLib.Age.judgementCycleType,eq,duration}
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private Integer judgementCycle;
 
     /**
      * opt, time,
      * 聚类库老化执行时间
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private String agingExecDataTime;
 
     /**
      * opt, bool,
      * 聚类库满自动清理使能
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private Boolean automaticClearEnabled;
 }

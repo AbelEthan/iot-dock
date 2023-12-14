@@ -16,7 +16,16 @@
 
 package com.zmqx.hik.isapi.model.face;
 
+import com.zmqx.hik.isapi.constants.IsApiConstants;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  * @ClassName: {@link CreateFDLib}
@@ -26,7 +35,11 @@ import lombok.Data;
  * @Describes opt, object, 创建人脸库
  */
 @Data
-public class CreateFDLib {
+@NoArgsConstructor
+@AllArgsConstructor
+@XmlRootElement(name = "CreateFDLib")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class CreateFDLib implements Serializable {
 
     /**
      * opt, int,
@@ -34,6 +47,7 @@ public class CreateFDLib {
      * 从1开始赋值;
      * 依次增加, range:[1,15]
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private Integer id;
 
     /**
@@ -41,6 +55,7 @@ public class CreateFDLib {
      * 人脸库名称,
      * range:[1,64]
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private String name;
 
     /**
@@ -48,6 +63,7 @@ public class CreateFDLib {
      * 检测阈值,
      * range:[0,100]
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private Integer thresholdValue;
 
     /**
@@ -55,6 +71,7 @@ public class CreateFDLib {
      * 人脸库附加信息,
      * range:[1,128]
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private String customInfo;
 
     /**
@@ -62,12 +79,14 @@ public class CreateFDLib {
      * 自定义人脸库ID,
      * range:[1,64]
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private String customFaceLibID;
 
     /**
      * opt, bool,
      * 人脸库自动更新库中底图使能
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private Boolean autoUpdata;
 
     /**
@@ -75,12 +94,14 @@ public class CreateFDLib {
      * 图片质量阈值,
      * range:[0,100]
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private Integer qualityThreshold;
 
     /**
      * opt, int,
      * 入库相似度阈值, range:[0,100]
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private Integer importFDThreshold;
 
     /**
@@ -88,13 +109,15 @@ public class CreateFDLib {
      * 人脸库聚类老化参数配置;
      * 当<autoUpdata>=true时生效
      */
-    private Age Age;
+    @XmlElement(name = "Age", namespace = IsApiConstants.ISAPI_NAMESPACE)
+    private Age age;
 
     /**
      * opt, object,
      * 人脸库比对客流统计去重配
      */
-    private FaceCounting FaceCounting;
+    @XmlElement(name = "FaceCounting", namespace = IsApiConstants.ISAPI_NAMESPACE)
+    private FaceCounting faceCounting;
 
     /**
      * opt, enum,
@@ -103,5 +126,6 @@ public class CreateFDLib {
      * [ordinary#普通库,privacyMask#隐私遮蔽库],
      * desc:不传该节点，默认创建普通人脸库
      */
+    @XmlElement(namespace = IsApiConstants.ISAPI_NAMESPACE)
     private String faceLibType;
 }

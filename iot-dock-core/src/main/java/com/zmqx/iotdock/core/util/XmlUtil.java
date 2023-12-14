@@ -25,6 +25,7 @@ import javax.xml.bind.Unmarshaller;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -42,7 +43,7 @@ public class XmlUtil {
      * @param obj
      * @return
      */
-    public static String convertToXml(Object obj){
+    public static String convertToXml(Object obj) {
         //创建输出流
         StringWriter sw = new StringWriter();
         sw.append(StrUtil.LF);
@@ -54,7 +55,7 @@ public class XmlUtil {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             //将对象转换成输出流形式的xml
             marshaller.marshal(obj, sw);
-        }catch (JAXBException e){
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
         return sw.toString();
@@ -67,7 +68,7 @@ public class XmlUtil {
      * @param filePath
      */
     @SuppressWarnings("unchecked")
-    public static void convertToXml(Object obj,String filePath){
+    public static void convertToXml(Object obj, String filePath) {
         try {
             //利用jdk中自带的转换类型实现
             JAXBContext context = JAXBContext.newInstance(obj.getClass());
@@ -83,7 +84,7 @@ public class XmlUtil {
                 e.printStackTrace();
             }
             marshaller.marshal(obj, fw);
-        }catch (JAXBException e){
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
@@ -96,7 +97,7 @@ public class XmlUtil {
      * @return
      */
     @SuppressWarnings("unchecked")
-    public static Object convertStrToObj(Class<?> clazz, String xmlStr){
+    public static Object convertStrToObj(Class<?> clazz, String xmlStr) {
         Object xmlObj = null;
         try {
             JAXBContext context = JAXBContext.newInstance(clazz);
@@ -118,16 +119,35 @@ public class XmlUtil {
      * @return
      */
     @SuppressWarnings("unchecked")
-    public static <T> T convertFileToObj(Class<T> clazz, String xmlPath){
+    public static <T> T convertFileToObj(Class<T> clazz, String xmlPath) {
         try {
             JAXBContext context = JAXBContext.newInstance(clazz);
             // 进行将XML转成对象的核心接口
             Unmarshaller unmarshaller = context.createUnmarshaller();
-           try(FileInputStream fis = new FileInputStream(xmlPath)){
-               return (T) unmarshaller.unmarshal(fis);
-           }catch (IOException e){
-               throw new RuntimeException("XML文件读取失败", e);
-           }
+            try (FileInputStream fis = new FileInputStream(xmlPath)) {
+                return (T) unmarshaller.unmarshal(fis);
+            } catch (IOException e) {
+                throw new RuntimeException("XML文件读取失败", e);
+            }
+        } catch (JAXBException e) {
+            throw new RuntimeException("XML转换成对象失败", e);
+        }
+    }
+
+    /**
+     * 将XML文件转换成对象
+     *
+     * @param clazz
+     * @param inputStream
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T convertFileToObj(Class<T> clazz, InputStream inputStream) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(clazz);
+            // 进行将XML转成对象的核心接口
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            return (T) unmarshaller.unmarshal(inputStream);
         } catch (JAXBException e) {
             throw new RuntimeException("XML转换成对象失败", e);
         }
