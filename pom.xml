@@ -27,7 +27,7 @@
         <module>iot-dock-annotation</module>
         <module>iot-dock-core</module>
         <module>iot-dock-extend</module>
-        <module>hik-isapi-spring-boot-starter</module>
+        <module>hik-isapi</module>
     </modules>
 
 </project>

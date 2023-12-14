@@ -11,21 +11,10 @@
     </parent>
 
     <groupId>com.zmqx</groupId>
-    <artifactId>hik-isapi-spring-boot-starter</artifactId>
+    <artifactId>hik-isapi</artifactId>
     <version>23.12.001-SNAPSHOT</version>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <version>${spring-boot.version}</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-            <version>${spring-boot.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
